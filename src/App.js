@@ -1,8 +1,11 @@
+import React from 'react'
+import Button from './components/common/Button'
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header"></header>
-    </div>
+    <>
+      <Button onClick={() => console.log()}>Button</Button>
+    </>
   )
 }
 

@@ -1,0 +1,126 @@
+@import './reset.scss';
+
+@import "~bootstrap/scss/bootstrap";
+
+:root {
+  --primary-color: #6c5ce7;
+  --primary-dark: #5a4fcf;
+  --secondary-color: #a29bfe;
+  --success-color: #00b894;
+  --success-dark: #00a085;
+  --danger-color: #e84393;
+  --danger-dark: #d63384;
+  --warning-color: #fdcb6e;
+  --warning-dark: #e17055;
+  --info-color: #74b9ff;
+  --info-dark: #0984e3;
+  --light-color: #f8f9fa;
+  --dark-color: #2d3436;
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #6c757d;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+
+  &:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+  }
+
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 0.2rem rgba(108, 92, 231, 0.25);
+  }
+}
+
+.btn-success {
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+
+  &:hover {
+    background-color: var(--success-dark);
+    border-color: var(--success-dark);
+  }
+
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 184, 148, 0.25);
+  }
+}
+
+.btn-danger {
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
+
+  &:hover {
+    background-color: var(--danger-dark);
+    border-color: var(--danger-dark);
+  }
+
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 0.2rem rgba(232, 67, 147, 0.25);
+  }
+}
+
+.btn-warning {
+  background-color: var(--warning-color);
+  border-color: var(--warning-color);
+  color: var(--dark-color);
+
+  &:hover {
+    background-color: var(--warning-dark);
+    border-color: var(--warning-dark);
+    color: white;
+  }
+
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 0.2rem rgba(253, 203, 110, 0.25);
+  }
+}
+
+.btn-info {
+  background-color: var(--info-color);
+  border-color: var(--info-color);
+
+  &:hover {
+    background-color: var(--info-dark);
+    border-color: var(--info-dark);
+  }
+
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 0.2rem rgba(116, 185, 255, 0.25);
+  }
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

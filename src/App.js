@@ -1,8 +1,13 @@
 import React from 'react'
-import TodoPage from './pages/TodoPage'
+import { BrowserRouter } from 'react-router-dom'
+import AppRoutes from './routes/Routes'
 
 function App() {
-  return <TodoPage></TodoPage>
+  return (
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  )
 }
 
 export default App

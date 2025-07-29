@@ -89,7 +89,6 @@ const TodoPage = () => {
         throw new Error('Task not found')
       }
 
-      // Оновлюємо завдання з усіма його полями
       const updatedTask = await updateTaskFunc(id, {
         ...currentTask,
         isCompleted,

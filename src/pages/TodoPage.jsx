@@ -8,12 +8,14 @@ import {
   getTasks,
   updateTask as updateTaskFunc,
 } from '../api/todoApi'
+import Button from '../components/common/Button'
 
 const TodoPage = () => {
   const [tasks, setTasks] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [editingTask, setEditingTask] = useState(null)
+  const [showForm, setShowForm] = useState(false)
 
   // const [activeTasks, setActiveTasks] = useState(0)
   // const [completedTasks, setCompleteTasks] = useState(0)
@@ -103,6 +105,7 @@ const TodoPage = () => {
   const handleEditTask = (task) => {
     console.log('Set editing task:', task)
     setEditingTask(task)
+    setShowForm(true)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
@@ -163,12 +166,19 @@ const TodoPage = () => {
                   </Alert>
                 )}
 
-                <TodoForm
-                  onSubmit={handleSubmitTask}
-                  loading={loading}
-                  editTask={editingTask}
-                  onCancel={handleCancelEdit}
-                />
+                {showForm && (
+                  <div className="mb-4">
+                    <TodoForm
+                      onSubmit={handleSubmitTask}
+                      loading={loading}
+                      editTask={editingTask}
+                      onCancel={() => {
+                        handleCancelEdit()
+                        setShowForm(false)
+                      }}
+                    />
+                  </div>
+                )}
 
                 {loading && tasks.length === 0 && (
                   <div className="text-center py-5">
@@ -189,6 +199,16 @@ const TodoPage = () => {
                   />
                 ) : null}
               </div>
+              <Button
+                className="rounded-btn"
+                variant="light"
+                onClick={() => {
+                  setShowForm((prev) => !prev)
+                  setEditingTask(null)
+                }}
+              >
+                <i className="fas fa-plus"></i>
+              </Button>
             </div>
           </div>
         </div>

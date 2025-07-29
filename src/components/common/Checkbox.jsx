@@ -9,7 +9,7 @@ const Checkbox = ({
   ...props
 }) => {
   return (
-    <div className={`form-check ${className}`}>
+    <div className={`form-check ${className} cursor-pointer`}>
       <input
         className="form-check-input"
         type="checkbox"

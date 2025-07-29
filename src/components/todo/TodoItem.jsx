@@ -13,10 +13,8 @@ const TodoItem = ({ task, onToggle, onEdit, onDelete, loading = false }) => {
     onEdit(task)
   }
 
-  const handleDelete = () => {
-    if (window.confirm('Are you sure you want to delete this task?')) {
-      onDelete(task._id)
-    }
+  const handleDeleteClick = () => {
+    onDelete(task._id)
   }
 
   const toggleDescription = () => {
@@ -100,7 +98,7 @@ const TodoItem = ({ task, onToggle, onEdit, onDelete, loading = false }) => {
                 <Button
                   variant="outline-primary"
                   size="sm"
-                  onClick={handleDelete}
+                  onClick={handleDeleteClick}
                   disabled={loading}
                   title="Delete"
                 >

@@ -9,6 +9,7 @@ import {
   updateTask as updateTaskFunc,
 } from '../api/todoApi'
 import Button from '../components/common/Button'
+import ConfirmModal from '../components/common/ConfirmModal'
 
 const TodoPage = () => {
   const [tasks, setTasks] = useState([])
@@ -16,6 +17,9 @@ const TodoPage = () => {
   const [error, setError] = useState(null)
   const [editingTask, setEditingTask] = useState(null)
   const [showForm, setShowForm] = useState(false)
+
+  const [showConfirm, setShowConfirm] = useState(false)
+  const [taskToDelete, setTaskToDelete] = useState(null)
 
   // const [activeTasks, setActiveTasks] = useState(0)
   // const [completedTasks, setCompleteTasks] = useState(0)
@@ -112,14 +116,22 @@ const TodoPage = () => {
     setEditingTask(null)
   }
 
-  const handleDeleteTask = async (id) => {
+  const handleDeleteRequest = (taskId) => {
+    const task = tasks.find((t) => t._id === taskId)
+    setTaskToDelete(task)
+    setShowConfirm(true)
+  }
+
+  const handleConfirmDelete = async () => {
+    if (!taskToDelete) return
+
     try {
       setLoading(true)
       setError(null)
-      await deleteTask(id)
-      setTasks((prev) => prev.filter((task) => task._id !== id))
+      await deleteTask(taskToDelete._id)
+      setTasks((prev) => prev.filter((task) => task._id !== taskToDelete._id))
 
-      if (editingTask && editingTask._id === id) {
+      if (editingTask && editingTask._id === taskToDelete._id) {
         setEditingTask(null)
       }
     } catch (err) {
@@ -127,7 +139,13 @@ const TodoPage = () => {
       console.error('Error deleting task:', err)
     } finally {
       setLoading(false)
+      setTaskToDelete(null)
     }
+  }
+
+  const handleCancelDelete = () => {
+    setShowConfirm(false)
+    setTaskToDelete(null)
   }
 
   const handleCloseAlert = () => {
@@ -193,7 +211,7 @@ const TodoPage = () => {
                     tasks={tasks}
                     onToggle={handleToggleTask}
                     onEdit={handleEditTask}
-                    onDelete={handleDeleteTask}
+                    onDelete={handleDeleteRequest}
                     loading={loading}
                   />
                 ) : null}
@@ -212,6 +230,18 @@ const TodoPage = () => {
           </div>
         </div>
       </div>
+      <ConfirmModal
+        isOpen={showConfirm}
+        title="Delete this task?"
+        message={
+          'Are you sure you want to delete this task? This action cannot be undone.'
+        }
+        confirmText="Delete"
+        cancelText="Cancel"
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+        loading={loading}
+      />
     </div>
   )
 }

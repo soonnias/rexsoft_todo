@@ -22,7 +22,7 @@ const TodoList = ({ tasks, onToggle, onEdit, onDelete, loading = false }) => {
       {activeTasks.length > 0 && (
         <div className="active-tasks">
           {activeTasks.map((task) => (
-            <div key={task.id}>
+            <div key={task._id}>
               <TodoItem
                 task={task}
                 onToggle={onToggle}
@@ -41,7 +41,7 @@ const TodoList = ({ tasks, onToggle, onEdit, onDelete, loading = false }) => {
             Completed ({completedTasks.length})
           </div>
           {completedTasks.map((task) => (
-            <div key={task.id}>
+            <div key={task._id}>
               <TodoItem
                 task={task}
                 onToggle={onToggle}

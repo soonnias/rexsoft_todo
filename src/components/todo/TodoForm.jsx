@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from '../common/Button'
 import Input from '../common/Input'
 
@@ -9,10 +9,16 @@ const TodoForm = ({
   onCancel = null,
 }) => {
   const [formData, setFormData] = useState({
-    title: '',
-    description: '',
+    title: editTask ? editTask.title : '',
+    description: editTask ? editTask.description : '',
   })
 
+  useEffect(() => {
+    setFormData({
+      title: editTask ? editTask.title : '',
+      description: editTask ? editTask.description : '',
+    })
+  }, [editTask])
   const isEditing = !!editTask
 
   const handleChange = (e) => {
@@ -104,8 +110,8 @@ const TodoForm = ({
             type="submit"
             variant="primary"
             disabled={loading || !formData.title.trim()}
-            onClick={handleSubmit}
             className="px-4"
+            onClick={handleSubmit}
           >
             {loading ? (
               <>

@@ -1,12 +1,8 @@
 import React from 'react'
-import Button from './components/common/Button'
+import TodoPage from './pages/TodoPage'
 
 function App() {
-  return (
-    <>
-      <Button onClick={() => console.log()}>Button</Button>
-    </>
-  )
+  return <TodoPage></TodoPage>
 }
 
 export default App

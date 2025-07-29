@@ -99,7 +99,8 @@ const TodoForm = ({
           {isEditing && (
             <Button
               type="button"
-              variant="secondary"
+              variant="primary"
+              outline
               onClick={handleCancel}
               disabled={loading}
             >

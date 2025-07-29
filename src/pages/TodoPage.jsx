@@ -15,9 +15,21 @@ const TodoPage = () => {
   const [error, setError] = useState(null)
   const [editingTask, setEditingTask] = useState(null)
 
+  // const [activeTasks, setActiveTasks] = useState(0)
+  // const [completedTasks, setCompleteTasks] = useState(0)
+
   useEffect(() => {
     loadTasks()
   }, [])
+
+  // useEffect(() => {
+  //   changeStatistics()
+  // }, [tasks])
+
+  // const changeStatistics = () => {
+  //   setActiveTasks(tasks.filter((task) => !task.isCompleted))
+  //   setCompleteTasks(tasks.filter((task) => task.isCompleted))
+  // }
 
   const loadTasks = async () => {
     try {
@@ -124,15 +136,18 @@ const TodoPage = () => {
     <div className="min-vh-100 py-4">
       <div className="container">
         <div className="row justify-content-center">
-          <div className="col-12 col-lg-8 col-xl-6">
+          <div className="col-12 col-lg-10 col-xl-8">
             <div className="todo-container">
-              {/* Header */}
-              <div className="todo-header text-center">
-                <h1>
-                  <i className="fas fa-tasks me-3"></i>
-                  TODO List
-                </h1>
-                <p>Organize your tasks efficiently</p>
+              <div className="d-flex flex-md-row justify-content-center align-items-start mb-4 gap-3">
+                <div className="todo-header text-center">
+                  <h1 className="mb-1">
+                    <i className="fas fa-tasks me-3"></i>
+                    TODO List
+                  </h1>
+                  <p className="text-muted mb-0">
+                    Organize your tasks efficiently
+                  </p>
+                </div>
               </div>
 
               <div>

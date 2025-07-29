@@ -3,6 +3,7 @@ import React from 'react'
 const Button = ({
   children,
   variant = 'primary',
+  outline = false,
   onClick,
   size,
   disabled = false,
@@ -10,8 +11,9 @@ const Button = ({
   className = '',
   ...props
 }) => {
+  const variantClass = outline ? `btn-outline-${variant}` : `btn-${variant}`
   const classes =
-    `btn btn-${variant} ${size ? `btn-${size}` : ''} ${className}`.trim()
+    `btn ${variantClass} ${size ? `btn-${size}` : ''} ${className}`.trim()
 
   return (
     <button

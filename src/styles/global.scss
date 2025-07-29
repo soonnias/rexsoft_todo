@@ -31,6 +31,10 @@
   color: $primary-dark !important;
 }
 
+.text-gray{
+  color: $dark-color !important;
+}
+
 .btn:disabled,
 .btn.disabled,
 fieldset:disabled .btn {
@@ -247,4 +251,18 @@ body {
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   background-color: white;
+}
+
+.task-content {
+  min-width: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.task-content h6,
+.task-content p.card-text {
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }

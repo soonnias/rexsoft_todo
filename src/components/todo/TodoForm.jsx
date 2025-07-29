@@ -34,16 +34,14 @@ const TodoForm = ({
     e.preventDefault()
     handleCancel()
 
-    setTimeout(() => {
-      if (formData.title.trim()) {
-        if (isEditing) {
-          onSubmit({ ...editTask, ...formData })
-        } else {
-          onSubmit({ ...formData })
-        }
-        setFormData({ title: '', description: '' })
+    if (formData.title.trim()) {
+      if (isEditing) {
+        onSubmit({ ...editTask, ...formData })
+      } else {
+        onSubmit({ ...formData })
       }
-    }, 3000)
+      setFormData({ title: '', description: '' })
+    }
   }
 
   const handleCancel = () => {
@@ -96,6 +94,7 @@ const TodoForm = ({
                 placeholder="Enter a task name..."
                 required
                 disabled={loading}
+                maxLength={50}
               />
             </div>
 
@@ -112,6 +111,8 @@ const TodoForm = ({
                 placeholder="Enter description..."
                 rows={3}
                 disabled={loading}
+                maxLength={200}
+                style={{ maxHeight: '150px', overflowY: 'auto' }}
               />
             </div>
 

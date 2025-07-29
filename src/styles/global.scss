@@ -65,11 +65,16 @@ fieldset:disabled .btn {
   }
 }
 
-.form-check-input:checked {
-  background-color: $primary-dark;
-  border-color: $primary-dark;
-  box-shadow: 0 0 0 0.2rem rgba(196, 221, 200, 0.4);
+.form-check-input {
+  border: 1px solid $primary-dark;
+
+  &:checked {
+    background-color: $primary-dark;
+    border-color: $primary-dark;
+    box-shadow: 0 0 0 0.2rem rgba(196, 221, 200, 0.4);
+  }
 }
+
 
 s, .strikethrough {
   text-decoration: line-through;

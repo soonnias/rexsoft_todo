@@ -2,11 +2,18 @@ import React, { useState } from 'react'
 import Button from '../common/Button'
 import Input from '../common/Input'
 
-const TodoForm = ({ onSubmit, loading = false }) => {
+const TodoForm = ({
+  onSubmit,
+  loading = false,
+  editTask = null,
+  onCancel = null,
+}) => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
   })
+
+  const isEditing = !!editTask
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -17,10 +24,23 @@ const TodoForm = ({ onSubmit, loading = false }) => {
     e.preventDefault()
 
     if (formData.title.trim()) {
-      onSubmit({
-        ...formData,
-      })
+      if (isEditing) {
+        onSubmit({ ...editTask, ...formData })
+      } else {
+        onSubmit({
+          ...formData,
+        })
+      }
 
+      setFormData({ title: '', description: '' })
+    }
+  }
+
+  const handleCancel = () => {
+    if (onCancel) {
+      onCancel()
+    }
+    if (!isEditing) {
       setFormData({ title: '', description: '' })
     }
   }
@@ -29,8 +49,10 @@ const TodoForm = ({ onSubmit, loading = false }) => {
     <div className="card mb-4 fade-in">
       <div className="card-header bg-light">
         <h5 className="card-title mb-0">
-          <i className="fas fa-plus-circle me-2 text-primary"></i>
-          Add new task
+          <i
+            className={`fas ${isEditing ? 'fa-edit' : 'fa-plus-circle'} me-2 text-primary`}
+          ></i>
+          {isEditing ? 'Edit task' : 'Add new task'}
         </h5>
       </div>
       <div className="card-body">
@@ -67,7 +89,17 @@ const TodoForm = ({ onSubmit, loading = false }) => {
           </div>
         </form>
 
-        <div className="d-flex justify-content-end">
+        <div className="d-flex justify-content-end gap-2">
+          {isEditing && (
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={handleCancel}
+              disabled={loading}
+            >
+              Cancel
+            </Button>
+          )}
           <Button
             type="submit"
             variant="primary"
@@ -81,12 +113,14 @@ const TodoForm = ({ onSubmit, loading = false }) => {
                   className="spinner-border spinner-border-sm me-2"
                   role="status"
                 ></span>
-                Adding...
+                {isEditing ? 'Saving...' : 'Adding...'}
               </>
             ) : (
               <>
-                <i className="fas fa-plus me-2"></i>
-                Add new task
+                <i
+                  className={`fas ${isEditing ? 'fa-save' : 'fa-plus'} me-2`}
+                ></i>
+                {isEditing ? 'Save changes' : 'Add new task'}
               </>
             )}
           </Button>
